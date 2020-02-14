@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/lbwa/promise-then/compare/v0.1.0...v0.1.1) (2020-02-14)
+
+
+### Bug Fixes
+
+* correct npm config ([df6bb0e](https://github.com/lbwa/promise-then/commit/df6bb0ec0fe02dbd0e5a5755b3365d8d77a197e3))
+
 ## 0.1.0 (2020-02-14)
 
 
