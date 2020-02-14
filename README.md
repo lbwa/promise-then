@@ -1,12 +1,12 @@
-<h1 align="center">Promises A+</h1>
+<h1 align="center">Promise/then</h1>
 
-[Promise/A++][spec-promise] implementation.
+[Promise/A+][spec-promise] implementation.
 
 [spec-promise]: https://promisesaplus.com
 
 ## Debug mode
 
-Debug mode only works with [Visual Studio Code](https://code.visualstudio.com/docs/typescript/typescript-debugging).
+Debug mode only works with [Visual Studio Code](https://code.visualstudio.com/docs/typescript/typescript-debugging) breakpoint.
 
 ```bash
 # using yarn

@@ -1,9 +1,9 @@
 {
-  "name": "promises-aplus",
+  "name": "promise-then",
   "version": "0.1.0",
   "license": "MIT",
   "author": "lbwa",
-  "module": "dist/promises-aplus.esm.js",
+  "module": "dist/promise-then.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [

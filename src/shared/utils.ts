@@ -3,7 +3,7 @@ export function isFunction(val: any): val is Function {
 }
 
 export function isObject(val: any): val is object {
-  return typeof val === 'object'
+  return typeof val === 'object' && val !== null
 }
 
 /**

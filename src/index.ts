@@ -107,15 +107,14 @@ export class Promiser<T> {
 
           // 3. spec 2.3.3 if result is a object or function
           if (isObject(result) || isFunction(result)) {
-            let thenable: Promiser<T>['then'] | null = null
             // spec 2.3.3.3.3, 2.3.3.3.4
             let flagInvoked = false
             try {
               // spec 2.3.3.1
-              thenable = result.then
+              const then: Promiser<T>['then'] = result.then // thenable
               // spec 2.3.3.3
-              if (isFunction(thenable)) {
-                thenable.call(
+              if (isFunction(then)) {
+                then.call(
                   result,
                   function resolvePromise(val: any) {
                     // spec 2.3.3.3.3
