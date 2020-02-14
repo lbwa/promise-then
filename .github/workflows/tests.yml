@@ -1,4 +1,4 @@
-name: Tests
+name: Promises/A+ Test Suite
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
-          version: ${{ matrix.node_version }}
+          node-version: ${{ matrix.node_version }}
 
       - name: Use Yarn
         run: |

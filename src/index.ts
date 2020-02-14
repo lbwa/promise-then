@@ -220,3 +220,5 @@ export class Promiser<T> {
     })
   }
 }
+
+export default Promiser

@@ -2,10 +2,17 @@
   "name": "promise-then",
   "version": "0.1.0",
   "license": "MIT",
-  "author": "lbwa",
+  "author": "Bowen <vnode@outlook.com>",
   "module": "dist/promise-then.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "keywords": [
+    "promise",
+    "then",
+    "promises-aplus",
+    "flow control",
+    "thenable"
+  ],
   "files": [
     "dist"
   ],
