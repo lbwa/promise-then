@@ -12,7 +12,7 @@
   </a>
 </p>
 
-[Promises/A+][spec-promise] implementation based on observer pattern. `Promises/A+ speciation` is a kind of typical solution for flow control. All promise instance is a kind of subject, all thenable callback functions are observers.
+[Promises/A+][spec-promise] implementation based on observer pattern. `Promises/A+ speciation` is a kind of typical solution for asynchronous flow control. All promise instance is a kind of [observer's subject](https://en.wikipedia.org/wiki/Observer_pattern) and all callback functions are observers of the above subject.
 
 [spec-promise]: https://promisesaplus.com
 

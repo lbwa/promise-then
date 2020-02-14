@@ -1,8 +1,17 @@
 {
   "name": "promise-then",
+  "description": "Promises/A+ implementation",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Bowen <vnode@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lbwa/promise-then.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lbwa/promise-then/issues"
+  },
+  "homepage": "https://github.com/lbwa/promise-then#readme",
   "module": "dist/promise-then.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
