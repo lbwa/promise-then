@@ -12,7 +12,9 @@
   </a>
 </p>
 
-[Promises/A+][spec-promise] implementation based on observer pattern. `Promises/A+ speciation` is a kind of typical solution for asynchronous flow control. All promise instance is a kind of [observer's subject](https://en.wikipedia.org/wiki/Observer_pattern) and all callback functions are observers of the above subject.
+[Promises/A+ specification][spec-promise] is a kind of typical solution for asynchronous flow control.
+
+This library is a kind of `Promises/A+` implementation based on observer pattern. All promise instance is a kind of [observer's subject](https://en.wikipedia.org/wiki/Observer_pattern) and all callback functions are observers of the above subject.
 
 [spec-promise]: https://promisesaplus.com
 
@@ -48,7 +50,11 @@ promiser.then(
 
 ## Debug mode
 
-Debug mode only works with [Visual Studio Code](https://code.visualstudio.com/docs/typescript/typescript-debugging) breakpoint.
+Debug mode only works with `Visual Studio Code` breakpoint [tutorial][doc-ts-debug].
+
+[doc-ts-debug]: https://code.visualstudio.com/docs/typescript/typescript-debugging
+
+You can use those commands to run debug mode directly if necessary.
 
 ```bash
 # using yarn
