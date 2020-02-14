@@ -18,7 +18,7 @@ const enum States {
   rejected = 'rejected',
 }
 
-export class Promiser<T> {
+export default class Promiser<T> {
   private state: States = States.pending
   private value: any = undefined
   /**

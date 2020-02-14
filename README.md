@@ -1,4 +1,4 @@
-<h1 align="center">Promiser</h1>
+<h1 align="center">Promises A+</h1>
 
 [Promise/A++][spec-promise] implementation.
 

@@ -1,6 +1,9 @@
 {
+  "name": "promises-aplus",
   "version": "0.1.0",
   "license": "MIT",
+  "author": "lbwa",
+  "module": "dist/promises-aplus.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -27,9 +30,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "promiser",
-  "author": "lbwa",
-  "module": "dist/promiser.esm.js",
   "devDependencies": {
     "@types/jest": "^25.1.2",
     "husky": "^4.2.3",
