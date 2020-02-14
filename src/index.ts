@@ -1,4 +1,4 @@
-import { isFunction, invariant, isObject } from './shared/utils'
+import { isFunction, invariant, isObject, isStrictEql } from './shared/utils'
 
 type OnRejected = (reason?: Error) => any
 type OnFulfilled<T> = (value?: T | Promiser<T>) => any
@@ -94,7 +94,7 @@ export class Promiser<T> {
     try {
       executor(
         function fulfill(result?: any): void {
-          // 1. if promiser and result is same object
+          // 1. spec 2.3.1 if promiser and result is same object
           if (result === promiser) {
             promiser._reject(
               new TypeError("CAN'T resolve a promiser with itself")
@@ -102,43 +102,60 @@ export class Promiser<T> {
             return
           }
 
-          // 2. if result is a promise
+          // 2. spec 2.3.2 if result is a promise
           if (result instanceof Promiser) {
+            // spec 2.3.2.1
             result.then(
-              promiser._fulfill.bind(promiser),
-              promiser._reject.bind(promiser)
+              result => promiser._fulfill(result), // spec 2.3.2.2
+              reason => promiser._reject(reason) // spec 2.3.2.3
             )
             return
           }
 
-          // 3. if result is a object or function
+          // 3. spec 2.3.3 if result is a object or function
           if (isObject(result) || isFunction(result)) {
             let thenable: Promiser<T>['then'] | null = null
+            // spec 2.3.3.3.3, 2.3.3.3.4
+            let flagInvoked = false
             try {
+              // spec 2.3.3.1
               thenable = result.then
+              // spec 2.3.3.3
+              if (isFunction(thenable)) {
+                thenable.call(
+                  result,
+                  function resolvePromise(val: any) {
+                    // spec 2.3.3.3.3
+                    if (!flagInvoked) {
+                      // spec 2.3.3.3.1
+                      fulfill.call(promiser, val)
+                      flagInvoked = true
+                    }
+                  },
+                  function rejectPromise(reason) {
+                    // spec 2.3.3.3.3
+                    if (!flagInvoked) {
+                      // spec 2.3.3.3.2
+                      promiser._reject(reason)
+                      flagInvoked = true
+                    }
+                  }
+                )
+                return
+              }
+              // spec 2.3.3.4
+              promiser._fulfill(result)
             } catch (error) {
-              promiser._reject(error)
+              // spec 2.3.3.3.4
+              if (!flagInvoked) {
+                // spec 2.3.3.2, 2.3.3.4.2
+                promiser._reject(error)
+              }
             }
-
-            // spec 2.3.3.3
-            if (isFunction(thenable)) {
-              thenable.call(
-                result,
-                function resolvePromise(val: any) {
-                  fulfill.call(promiser, val)
-                },
-                function rejectPromise(reason) {
-                  promiser._reject(reason)
-                }
-              )
-              return
-            }
-            // spec 2.3.3.4
-            promiser._fulfill(result)
             return
           }
 
-          // 4. if result is not a object or function
+          // 4. spec 2.3.4 if result is not a object or function
           promiser._fulfill(result)
         },
         function reject(reason?: Error): void {
@@ -201,11 +218,11 @@ export class Promiser<T> {
         )
       }
 
-      if (this.state === States.fulfilled) {
+      if (isStrictEql(this.state, States.fulfilled)) {
         return this._marcoTaskRunner(() => handleFulfilled(this.value))
       }
 
-      if (this.state === States.rejected) {
+      if (isStrictEql(this.state, States.rejected)) {
         return this._marcoTaskRunner(() => handleRejected(this.value))
       }
     })
