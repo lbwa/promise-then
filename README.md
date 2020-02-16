@@ -12,9 +12,34 @@
   </a>
 </p>
 
-[Promises/A+ specification][spec-promise] is a kind of typical solution for asynchronous flow control.
+This library is a kind of implementation for [Promises/A+ specification][spec-promise] which is a kind of typical solution for asynchronous flow control.
 
-This library is a kind of `Promises/A+` implementation based on observer pattern. All promise instance is a kind of [observer's subject](https://en.wikipedia.org/wiki/Observer_pattern) and all callback functions are observers of the above subject.
+The entire callbacks calling are based on [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern). Not two different queues subscribe to a particular state (eg. `fulfilled` OR `rejected`), but just only one **callbacks** queue as `subject's observer` to observe _the state changes of promise instance_.
+
+```text
+              callbacks
+  (not a particular type of callbacks)
+                  +
+                  |
+               observe
+                  |
+                  v
+the state  changes of Promise instance
+       (not a particular state)
+                  +
+                  |
+               notify
+                  |
+                  v
+          callbacks in queue
+                  +
+                  |
+                call
+                  |
+                  v
+      onFulfilled or onRejected
+
+```
 
 [spec-promise]: https://promisesaplus.com
 
@@ -46,6 +71,20 @@ promiser.then(
     /* handle any error in the promiser */
   }
 )
+```
+
+## Unit tests
+
+All unit tests have been handled by [the official test suite][doc-promise-test-suite].
+
+[doc-promise-test-suite]: https://github.com/promises-aplus/promises-tests
+
+```bash
+# using yarn
+yarn test
+
+# using npm
+npm t
 ```
 
 ## Debug mode

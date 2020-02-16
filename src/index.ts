@@ -39,15 +39,13 @@ export class Promiser<T> {
    * Why is _observers a list, not a plain object directly
    * 1. onFulfilled or onRejected can be registered when state is pending.
    * 2. spec 2.2.6 `then` may be called multiple times on the same promise.
-   * Multiple `then` calling for registering multiple callbacks on the same
-   * promise with pending state to prevent callback override.
    */
   private _observers: ThenableCallbacks<T>[] = []
 
   private _settle(state: Exclude<States, States.pending>, result?: any) {
     if (this.state !== States.pending) return // exit when settled state
     this.state = state
-    this.value = result // any valid JS value or error object
+    this.value = result // any valid JS value or Error object
     this._notify(
       isStrictEql(state, States.fulfilled) ? 'onFulfilled' : 'onRejected'
     )
